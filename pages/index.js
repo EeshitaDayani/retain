@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <text>retain</text>
+        <h1>retain</h1>
       </main>
     </>
   )
