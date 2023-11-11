@@ -9,13 +9,19 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [message, setMessage] = useState("Loading");
-  const [people, setPeople] = useState([]);
+
+  const [input, setInput] = useState('');
+
+  const handleEnter = (inputValue) => {
+    setInput(inputValue);
+  };
+
+  console.log(input);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/home")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.message);
         setMessage(data.message);
       });
   }, []);
@@ -23,7 +29,7 @@ export default function Home() {
   return (
       <div>
         <h1>retain</h1>
-        <InputField fontColor='black' />
+        <InputField onEnter={handleEnter} fontColor='black' />
       </div>
   )
 }

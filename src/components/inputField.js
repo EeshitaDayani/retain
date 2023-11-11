@@ -13,12 +13,11 @@ export default function InputField({ onEnter }) {
 
   return (
     <TextField
-      id="outlined-multiline-static"
+      id="outlined-basic"
       color="warning"
-      label="Multiline"
-      multiline
       rows={4}
       defaultValue="Default Value"
+      onKeyPress={handleKeyPress}
     />
   );
 }
