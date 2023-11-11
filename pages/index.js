@@ -1,7 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react';
 import InputField from '../src/components/InputField';
 
@@ -10,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [message, setMessage] = useState("Loading");
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState('empty');
 
   const handleEnter = (inputValue) => {
     setInput(inputValue);
@@ -19,12 +16,18 @@ export default function Home() {
   console.log(input);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/home")
+    fetch(`http://localhost:8080/api/textInput?value=${input}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data.message);
         setMessage(data.message);
       });
-  }, []);
+  }, [input]);
 
   return (
       <div>
