@@ -2,8 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from 'react';
-import InputField from '../src/components/InputField';
+import { useEffect, useState } from 'react'
+import InputField from '../src/components/InputField'
+import ImageInput from '../src/components/ImageInput'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +31,7 @@ export default function Home() {
       <div>
         <h1>retain</h1>
         <InputField onEnter={handleEnter} fontColor='black' />
+        <ImageInput />
       </div>
   )
 }
