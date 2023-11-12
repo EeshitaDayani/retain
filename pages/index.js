@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react';
-import InputField from '../src/components/InputField';
+import InputField from '../src/components/inputField';
 import ImageInput from '../src/components/ImageInput';
 
 const inter = Inter({ subsets: ['latin'] })
