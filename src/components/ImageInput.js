@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
 const ImageInput = () => {
-
   const [selectedImage, setSelectedImage] = useState(null);
-
   return (
     <div>
       <h1>Upload and Display Image usign React Hook's</h1>
@@ -19,10 +17,8 @@ const ImageInput = () => {
           <button onClick={() => setSelectedImage(null)}>Remove</button>
         </div>
       )}
-
       <br />
       <br />
-      
       <input
         type="file"
         name="myImage"
