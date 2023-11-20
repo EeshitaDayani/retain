@@ -1,40 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Retain
+Retain is a learning tool motivated by the protégé effect, targeted towards non-visual learners. With cosine similarity, it checks a student's retention as they recapitulate contents of a chosen file.
 
-## Getting Started
+## Inspiration
+Non-visual learners are limited when it comes to online learning resources. Retain provides a platform that allows them to train their retention power, prepare for exams, and get ahead of coursework.
 
-First, run the development server:
+## What it does
+Students will submit a document that contains the material they want to be able to recollect. Retain will then record the students as they speak and using cosine similarity between the two, generate a final score of their performance.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How we built it
+We use Python's Tesseract, Sounddevice, and Speech Recognition libraries to convert different data streams (picture and audio) into a text document. For the converse facility, we utilized gTTS. Then using Google's Speech-to-Text API, we generate a transcript of the student's dialogue and compare that with the given reference text through SentenceTransformers.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Challenges we ran into
+The .wav, .mp3 and .mp4a files were finicky to work with, and it took us some time to figure out the appropriate API configurations for our audio files.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Accomplishments that we're proud of
+Conceptually, we are really happy that our project caters to a group of students that often seems to be left out of the dialogue regarding efficient learning methods. We also find the extensive usability and accessibility quite commendable. From a technical point of view, we are proud that we implemented coding practices centred around the principles of modularization and reusability to structure our project.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## What we learned
+We picked up on different forms of text similarity, various measures within semantic similarity and the ways in which we could utilize each one. We also learned a lot about how voice recording and synthesis can be integrated into Python applications.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## What's next for Retain
+We are hoping that Retain will eventually expand to being able to take in audios and texts in multiple languages and further include features such as an interactive Q&A and summarization.
