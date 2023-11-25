@@ -20,7 +20,7 @@ export default function ImageInput() {
       const formData = new FormData();
       formData.append('file', selectedImage);
   
-      const response = await fetch('http://localhost:8080/api/extractText', {
+      const response = await fetch('http://localhost:8080/api/extractTextFromImage', {
         method: 'POST',
         body: formData,
       });

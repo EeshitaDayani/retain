@@ -2,11 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PIL import Image
 import pytesseract
+from pydub import AudioSegment
+import speech_recognition as sr
+
 
 app = Flask(__name__)
 CORS(app)
-
-# TODO: FOR SHRIYA: Go into the API folder -> brew install pytessaract -> pip install tessaract
 
 @app.route("/api/textInput", methods=['GET'])
 def return_text_input():
@@ -17,8 +18,8 @@ def return_text_input():
         'message': response_message
     })
 
-@app.route("/api/extractText", methods=['POST'])
-def extract_text():
+@app.route("/api/extractTextFromImage", methods=['POST'])
+def extract_text_image():
     file = request.files['file']
     # Save the uploaded image temporarily
     image_path = 'temp_image.png'
@@ -34,6 +35,32 @@ def extract_text():
     return jsonify({
         'text': extracted_text.strip()
     })
+
+@app.route("/api/extractTextFromAudio", methods=['POST'])
+def extract_text_from_audio():
+    audio_file = request.files['audio']
+    # Save the uploaded audio temporarily
+    audio_path = 'temp_audio.webm'
+    audio_file.save(audio_path)
+
+    # Convert the webm format to wav using pydub
+    sound = AudioSegment.from_file(audio_path, format="webm")
+    sound.export("temp_audio.wav", format="wav")
+
+    # Use SpeechRecognition to transcribe the audio
+    recognizer = sr.Recognizer()
+    with sr.AudioFile("temp_audio.wav") as source:
+        audio_data = recognizer.record(source)
+        extracted_text = recognizer.recognize_google(audio_data, show_all=True)
+
+        # Remove the temporary audio files
+        import os
+        os.remove(audio_path)
+        os.remove("temp_audio.wav")
+
+        return jsonify({
+            'text': extracted_text['alternative'][0]['transcript']
+        })
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)

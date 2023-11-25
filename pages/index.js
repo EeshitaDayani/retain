@@ -1,9 +1,7 @@
-import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react';
 import InputField from '../src/components/inputField';
 import ImageInput from '../src/components/ImageInput';
-
-const inter = Inter({ subsets: ['latin'] })
+import AudioInput from '../src/components/AudioInput';
 
 export default function Home() {
   const [message, setMessage] = useState("Loading");
@@ -37,6 +35,7 @@ export default function Home() {
         <InputField onEnter={handleEnter} fontColor='black' />
         <h2>{message}</h2>
         <ImageInput />
+        <AudioInput />
       </div>
   )
 }
