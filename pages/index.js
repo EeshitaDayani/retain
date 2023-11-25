@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import InputField from '../src/components/inputField';
+import InputField from '../src/components/InputField';
 import ImageInput from '../src/components/ImageInput';
 import AudioInput from '../src/components/AudioInput';
 
