@@ -9,7 +9,7 @@ import speech_recognition as sr
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/api/textInput", methods=['GET'])
+@app.route("/api/textInput", methods=['POST'])
 def return_text_input():
     user_input = request.args.get('value', default='default_value')
     response_message = "This is what you entered: " + user_input
