@@ -8,10 +8,14 @@ CORS(app)
 # /api/home
 @app.route("/api/textInput", methods=['GET'])
 def return_home():
-    input_text = request.args.get('value', default='default_value')
+    user_input = request.args.get('value', default='default_value')
+    # print("LOGGING", user_input)
+
+    # Create a response message
+    response_message = "This is what you entered: " + user_input
 
     return jsonify({
-        'message': 'Success'
+        'message': response_message
     })
 
 

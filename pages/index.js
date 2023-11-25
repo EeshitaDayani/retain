@@ -14,8 +14,6 @@ export default function Home() {
     setInput(inputValue);
   };
 
-  console.log(input);
-
   useEffect(() => {
     fetch(`http://localhost:8080/api/textInput?value=${input}`, {
       method: 'GET',
@@ -27,6 +25,9 @@ export default function Home() {
       .then((data) => {
         console.log(data.message);
         setMessage(data.message);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
       });
   }, [input]);
 
@@ -34,6 +35,7 @@ export default function Home() {
       <div>
         <h1>retain</h1>
         <InputField onEnter={handleEnter} fontColor='black' />
+        <h2>{message}</h2>
         <ImageInput />
       </div>
   )

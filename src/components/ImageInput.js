@@ -4,7 +4,7 @@ const ImageInput = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   return (
     <div>
-      <h1>Upload and Display Image usign React Hook's</h1>
+      <h1>Upload and Display Image using React Hook's</h1>
 
       {selectedImage && (
         <div>
