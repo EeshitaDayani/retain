@@ -1,8 +1,12 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from PIL import Image
+import pytesseract
 
 app = Flask(__name__)
 CORS(app)
+
+# TODO: FOR SHRIYA: Go into the API folder -> brew install pytessaract -> pip install tessaract
 
 @app.route("/api/textInput", methods=['GET'])
 def return_text_input():
@@ -16,10 +20,19 @@ def return_text_input():
 @app.route("/api/extractText", methods=['POST'])
 def extract_text():
     file = request.files['file']
-    print(file)
+    # Save the uploaded image temporarily
+    image_path = 'temp_image.png'
+    file.save(image_path)
+
+    # Use Tesseract to extract text from the image
+    extracted_text = pytesseract.image_to_string(Image.open(image_path))
+
+    # Remove the temporary image file
+    import os
+    os.remove(image_path)
 
     return jsonify({
-        'text': 'Received image'
+        'text': extracted_text.strip()
     })
 
 if __name__ == "__main__":

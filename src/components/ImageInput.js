@@ -26,6 +26,8 @@ export default function ImageInput() {
       });
   
       const data = await response.json();
+      setExtractedText(data.text);
+
       console.log(data.text);
     } catch (error) {
       console.error('Error extracting text:', error);
