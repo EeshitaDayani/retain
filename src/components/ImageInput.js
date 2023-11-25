@@ -4,10 +4,30 @@ export default function ImageInput() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [extractedText, setExtractedText] = useState('');
 
-  const handleImageChange = (event) => {
+  const extractText = async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch('http://localhost:8080/api/extractTextFromImage', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+      return data.text;
+    } catch (error) {
+      console.error('Error extracting text:', error);
+      return '';
+    }
+  };
+
+  const handleImageChange = async (event) => {
     const file = event.target.files[0];
-    console.log(file);
     setSelectedImage(file);
+
+    const text = await extractText(file);
+    setExtractedText(text);
   };
 
   const removeImage = () => {
@@ -15,29 +35,9 @@ export default function ImageInput() {
     setExtractedText('');
   };
 
-  const extractTextFromImage = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('file', selectedImage);
-  
-      const response = await fetch('http://localhost:8080/api/extractTextFromImage', {
-        method: 'POST',
-        body: formData,
-      });
-  
-      const data = await response.json();
-      setExtractedText(data.text);
-
-      console.log(data.text);
-    } catch (error) {
-      console.error('Error extracting text:', error);
-    }
-  };
-  
-
   return (
     <div>
-      <h1>Upload and Extract Text from Image</h1>
+      <h2>Image Upload</h2>
 
       {selectedImage && (
         <div>
@@ -56,8 +56,6 @@ export default function ImageInput() {
         name="myImage"
         onChange={handleImageChange}
       />
-
-      <button onClick={extractTextFromImage}>Extract Text</button>
 
       {extractedText && (
         <div>
