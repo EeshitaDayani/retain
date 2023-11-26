@@ -12,6 +12,7 @@ export default function InputField() {
   };
 
   useEffect(() => {
+    // TODO: Fix newline problem for multine textbox
     fetch(`http://localhost:8080/api/textInput?value=${input}`, {
       method: 'POST',
       headers: {
@@ -27,7 +28,8 @@ export default function InputField() {
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
       <h2 >text input</h2>
       <TextField
-        id="outlined-basic"
+        id="standard-multiline-static"
+        multiline
         rows={4}
         defaultValue="Default Value"
         onKeyPress={handleKeyPress}
