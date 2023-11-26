@@ -36,7 +36,7 @@ export default function ImageInput() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#18756e' }}>
       <h2>image upload</h2>
 
       {selectedImage && (
@@ -51,11 +51,17 @@ export default function ImageInput() {
         </div>
       )}
 
-      <input
-        type="file"
-        name="myImage"
-        onChange={handleImageChange}
-      />
+      <label>
+        <input
+          type="file"
+          name="myImage"
+          onChange={handleImageChange}
+          style={{ display: 'none' }} // hide the default file input appearance
+        />
+        <div style={{ cursor: 'pointer', border: '1px solid #18756e', padding: '5px', borderRadius: '5px' }}>
+          choose a file
+        </div>
+      </label>
 
       {extractedText && (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

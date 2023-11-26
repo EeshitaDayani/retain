@@ -7,6 +7,8 @@ import InputField from '../src/components/InputField';
 import ImageInput from '../src/components/ImageInput';
 import AudioInput from '../src/components/AudioInput';
 
+// TODO: Change font
+
 const ContentContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   padding: theme.spacing(2),
@@ -25,7 +27,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#fffbf6' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#fffbf6', minHeight: '100vh' }}>
       <h1 style={{ color: '#18756e', fontWeight: 'bolder' }}>retain</h1>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2 style={{ color: '#18756e' }}>upload reference file</h2>
