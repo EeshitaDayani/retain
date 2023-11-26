@@ -22,8 +22,8 @@ export default function AudioInput() {
   };
 
   return (
-    <div>
-      <h2>Audio recorder</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
+      <h2>audio recorder</h2>
       <AudioRecorder 
         onRecordingComplete={sendAudioToServer}
         audioTrackConstraints={{
@@ -34,8 +34,8 @@ export default function AudioInput() {
       />
 
       {extractedText && (
-        <div>
-          <h2>Extracted Text:</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h2>extracted text:</h2>
           <p>{extractedText}</p>
         </div>
       )}

@@ -36,8 +36,8 @@ export default function ImageInput() {
   };
 
   return (
-    <div>
-      <h2>Image Upload</h2>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
+      <h2>image upload</h2>
 
       {selectedImage && (
         <div>
@@ -58,8 +58,8 @@ export default function ImageInput() {
       />
 
       {extractedText && (
-        <div>
-          <h2>Extracted Text:</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <h2>extracted text:</h2>
           <p>{extractedText}</p>
         </div>
       )}
