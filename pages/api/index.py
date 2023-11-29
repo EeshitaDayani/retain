@@ -15,6 +15,7 @@ userInput = ""
 
 @app.route("/api/textInput", methods=['POST'])
 def return_text_input():
+    global referenceText
     referenceText = request.args.get('value', default='default_value')
 
     return jsonify({
@@ -23,6 +24,7 @@ def return_text_input():
 
 @app.route("/api/extractTextFromImage", methods=['POST'])
 def extract_text_image():
+    global referenceText
     file = request.files['file']
     # Save the uploaded image temporarily
     image_path = 'temp_image.png'
@@ -41,6 +43,7 @@ def extract_text_image():
 
 @app.route("/api/extractTextFromAudio", methods=['POST'])
 def extract_text_from_audio():
+    global referenceText
     audio_file = request.files['audio']
     # Save the uploaded audio temporarily
     audio_path = 'temp_audio.webm'
@@ -68,6 +71,7 @@ def extract_text_from_audio():
 
 @app.route("/api/getUserAttempt", methods=['POST'])
 def extract_user_input():
+    global userInput
     audio_file = request.files['audio']
     # Save the uploaded audio temporarily
     audio_path = 'temp_audio.webm'
@@ -80,6 +84,7 @@ def extract_user_input():
     # Use SpeechRecognition to transcribe the audio
     recognizer = sr.Recognizer()
     with sr.AudioFile("temp_audio.wav") as source:
+        global userInput
         audio_data = recognizer.record(source)
         extracted_text = recognizer.recognize_google(audio_data, show_all=True)
         userInput = extracted_text['alternative'][0]['transcript']
@@ -93,25 +98,25 @@ def extract_user_input():
             'text': userInput
         })
 
-# @app.route("/api/compareTexts", methods=['GET'])
-# def compareTexts():
-print("AAAAAAAAAAAAAAA")
-print(referenceText)
-print(userInput)
+@app.route("/api/compareTexts", methods=['GET'])
+def compareTexts():
+    print("AAAAAAAAAAAAAAA")
+    print(referenceText)
+    print(userInput)
 
-model = SentenceTransformer('bert-base-nli-mean-tokens')
-#Encoding:
-comp = model.encode([referenceText, userInput])
+    model = SentenceTransformer('bert-base-nli-mean-tokens')
+    #Encoding:
+    comp = model.encode([referenceText, userInput])
 
-#let's calculate cosine similarity:
-similarity = (cosine_similarity([comp[0]], comp[1:])[0][0])*100//10
-print("AAAAAAAAAAAAAAA")
-print(referenceText)
-print(userInput)
-print(similarity)
-    # return jsonify({
-    #     'score': similarity
-    # })
+    #let's calculate cosine similarity:
+    similarity = (cosine_similarity([comp[0]], comp[1:])[0][0])*100//10
+    print("AAAAAAAAAAAAAAA")
+    print(referenceText)
+    print(userInput)
+    print(similarity)
+    return jsonify({
+        'score': similarity
+    })
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
