@@ -7,7 +7,7 @@ import InputField from '../src/components/InputField';
 import ImageInput from '../src/components/ImageInput';
 import AudioInput from '../src/components/AudioInput';
 import UserAttemptRecorder from '../src/components/UserAttemptRecorder';
-
+import Scorecard from '../src/components/Scorecard';
 
 // TODO: Change font
 
@@ -29,7 +29,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#fffbf6', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#fffbf6', minHeight: '100vh', color: '#fffbf6' }}>
       <h1 style={{ color: '#18756e', fontWeight: 'bolder' }}>retain</h1>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2 style={{ color: '#18756e' }}>upload reference file</h2>
@@ -49,9 +49,10 @@ export default function Home() {
           {selectedInput === 'audio' && <AudioInput />}
         </ContentContainer>
       </div>
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
         <h2 style={{ color: '#18756e' }}>press the icon to record your attempt</h2>
         <UserAttemptRecorder />
+        <Scorecard />
       </div>
     </div>
   );
