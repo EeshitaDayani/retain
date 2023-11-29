@@ -21,3 +21,6 @@ We picked up on different forms of text similarity, various measures within sema
 
 ## What's next for Retain
 We are hoping that Retain will eventually expand to being able to take in audios and texts in multiple languages and further include features such as an interactive Q&A and summarization.
+
+
+Figma: https://www.figma.com/proto/qKWG0H9t98L8fDnBUeqCGW/Retain
