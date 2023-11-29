@@ -64,7 +64,7 @@ def extract_text_from_audio():
             'text': referenceText
         })
 
-@app.route("/api/getUserInput", methods=['POST'])
+@app.route("/api/getUserAttempt", methods=['POST'])
 def extract_user_input():
     audio_file = request.files['audio']
     # Save the uploaded audio temporarily

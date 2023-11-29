@@ -6,6 +6,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import InputField from '../src/components/InputField';
 import ImageInput from '../src/components/ImageInput';
 import AudioInput from '../src/components/AudioInput';
+import UserAttemptRecorder from '../src/components/UserAttemptRecorder';
+
 
 // TODO: Change font
 
@@ -48,7 +50,8 @@ export default function Home() {
         </ContentContainer>
       </div>
       <div>
-        {/* TODO: Add Recorder for Revise Section */}
+        <h2 style={{ color: '#18756e' }}>press the icon to record your attempt</h2>
+        <UserAttemptRecorder />
       </div>
     </div>
   );
