@@ -4,6 +4,8 @@ from PIL import Image
 import pytesseract
 from pydub import AudioSegment
 import speech_recognition as sr
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 CORS(app)
@@ -90,6 +92,26 @@ def extract_user_input():
         return jsonify({
             'text': userInput
         })
+
+# @app.route("/api/compareTexts", methods=['GET'])
+# def compareTexts():
+print("AAAAAAAAAAAAAAA")
+print(referenceText)
+print(userInput)
+
+model = SentenceTransformer('bert-base-nli-mean-tokens')
+#Encoding:
+comp = model.encode([referenceText, userInput])
+
+#let's calculate cosine similarity:
+similarity = (cosine_similarity([comp[0]], comp[1:])[0][0])*100//10
+print("AAAAAAAAAAAAAAA")
+print(referenceText)
+print(userInput)
+print(similarity)
+    # return jsonify({
+    #     'score': similarity
+    # })
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
