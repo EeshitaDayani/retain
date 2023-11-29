@@ -21,7 +21,7 @@ export default function Scorecard() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
-      <button style={{ padding: '10px', margin: '12px', color: '#18756e', backgroundColor: '#fffbf6', borderRadius: '5px', border: '2px solid #18756e', cursor: 'pointer' }} onClick={handleSubmit}>Submit</button>
+      <button style={{ padding: '10px', margin: '12px', color: '#18756e', backgroundColor: '#fffbf6', borderRadius: '5px', border: '1px solid #18756e', cursor: 'pointer' }} onClick={handleSubmit}>submit</button>
       {score !== null && <h2>Your score: {score}</h2>}
     </div>
   );

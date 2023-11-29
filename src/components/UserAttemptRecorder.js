@@ -22,7 +22,7 @@ export default function UserAttemptRecorder() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#18756e', margin: '20px' }}>
       <AudioRecorder 
         onRecordingComplete={sendAudioToServer}
         audioTrackConstraints={{

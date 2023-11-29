@@ -100,20 +100,10 @@ def extract_user_input():
 
 @app.route("/api/compareTexts", methods=['GET'])
 def compareTexts():
-    print("AAAAAAAAAAAAAAA")
-    print(referenceText)
-    print(userInput)
-
     model = SentenceTransformer('bert-base-nli-mean-tokens')
-    #Encoding:
     comp = model.encode([referenceText, userInput])
-
-    #let's calculate cosine similarity:
     similarity = (cosine_similarity([comp[0]], comp[1:])[0][0])*100//10
-    print("AAAAAAAAAAAAAAA")
-    print(referenceText)
-    print(userInput)
-    print(similarity)
+
     return jsonify({
         'score': similarity
     })
