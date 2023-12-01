@@ -8,7 +8,7 @@ Non-visual learners are limited when it comes to online learning resources. Reta
 Students will submit a document that contains the material they want to be able to recollect. Retain will then record the students as they speak and using cosine similarity between the two, generate a final score of their performance.
 
 ## How we built it
-We use Python's Tesseract, Sounddevice, and Speech Recognition libraries to convert different data streams (picture and audio) into a text document. For the converse facility, we utilized gTTS. Then using Google's Speech-to-Text API, we generate a transcript of the student's dialogue and compare that with the given reference text through SentenceTransformers.
+For the backend, we use Python's Tesseract, Sounddevice, and Speech Recognition libraries to convert different data streams (picture and audio) into a text document. For the converse facility, we utilized gTTS. Then using Google's Speech-to-Text API, we generate a transcript of the student's dialogue and compare that with the given reference text through SentenceTransformers. For the frontend, we have used Javascipt and React in Next.js.
 
 ## Challenges we ran into
 The .wav, .mp3 and .mp4a files were finicky to work with, and it took us some time to figure out the appropriate API configurations for our audio files.
