@@ -13,9 +13,13 @@ export default function AudioInput() {
         method: 'POST',
         body: formData,
       });
+
+      const extractedTextResponse = await fetch('http://localhost:8080/api/extractedText', {
+        method: 'GET',
+      });
   
-      const data = await response.json();
-      setExtractedText(data.text);
+      const data = await extractedTextResponse.json();
+      setExtractedText(data.message);
     } catch (error) {
       console.error('Error sending audio to server:', error);
     }

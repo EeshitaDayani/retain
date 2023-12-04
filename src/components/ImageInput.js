@@ -14,11 +14,14 @@ export default function ImageInput() {
         body: formData,
       });
 
-      const data = await response.json();
-      return data.text;
+      const extractedTextResponse = await fetch('http://localhost:8080/api/extractedText', {
+        method: 'GET',
+      });
+
+      const data = await extractedTextResponse.json();
+      return(data.message)
     } catch (error) {
       console.error('Error extracting text:', error);
-      return '';
     }
   };
 

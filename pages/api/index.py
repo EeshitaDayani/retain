@@ -69,6 +69,14 @@ def extract_text_from_audio():
             'text': referenceText
         })
 
+
+@app.route("/api/extractedText", methods=['GET'])
+def extractedText():
+    return jsonify({
+        'message': referenceText
+    })
+
+
 @app.route("/api/getUserAttempt", methods=['POST'])
 def extract_user_input():
     global userInput
