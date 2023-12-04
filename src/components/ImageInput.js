@@ -65,13 +65,6 @@ export default function ImageInput() {
           choose a file
         </div>
       </label>
-
-      {extractedText && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h2>extracted text:</h2>
-          <p>{extractedText}</p>
-        </div>
-      )}
     </div>
   );
 }

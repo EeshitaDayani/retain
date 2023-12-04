@@ -56,12 +56,6 @@ export default function InputField() {
         defaultValue="Default Value"
         onKeyPress={handleKeyPress}
       />
-      {extractedText && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h2>extracted text:</h2>
-          <p>{extractedText}</p>
-        </div>
-      )}
     </div>
   );
 }

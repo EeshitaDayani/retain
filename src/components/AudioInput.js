@@ -36,13 +36,6 @@ export default function AudioInput() {
         }} 
         downloadFileExtension="wav"
       />
-
-      {extractedText && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <h2>extracted text:</h2>
-          <p>{extractedText}</p>
-        </div>
-      )}
     </div>
   );
 }
