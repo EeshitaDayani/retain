@@ -4,8 +4,8 @@ from PIL import Image
 import pytesseract
 from pydub import AudioSegment
 import speech_recognition as sr
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+import requests
+
 
 app = Flask(__name__)
 CORS(app)
@@ -100,13 +100,29 @@ def extract_user_input():
 
 @app.route("/api/compareTexts", methods=['GET'])
 def compareTexts():
-    model = SentenceTransformer('bert-base-nli-mean-tokens')
-    comp = model.encode([referenceText, userInput])
-    similarity = (cosine_similarity([comp[0]], comp[1:])[0][0])*100//10
-
+    api_token = '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'
+    API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-mpnet-base-v2"
+    headers = {"Authorization": f"Bearer {api_token}"}
+    def query(payload):
+        response = requests.post(API_URL, headers=headers, json=payload)
+        print(response.json())
+        return response.json()
+    
+    similarity = query(
+        {
+            "inputs": {
+                "source_sentence": referenceText,
+                "sentences": [
+                    userInput
+                ]
+            }
+        })
+    
     return jsonify({
-        'score': similarity
+        'score': round((similarity[0] * 100), 2)
     })
+    
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
+
