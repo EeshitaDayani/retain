@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PIL import Image
 import pytesseract
-from pydub import AudioSegment
+#from pydub import AudioSegment
+from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_audio
 import speech_recognition as sr
 import requests
 
@@ -50,8 +51,11 @@ def extract_text_from_audio():
     audio_file.save(audio_path)
 
     # Convert the webm format to wav using pydub
-    sound = AudioSegment.from_file(audio_path, format="webm")
-    sound.export("temp_audio.wav", format="wav")
+    #sound = AudioSegment.from_file(audio_path, format="webm")
+    #sound.export("temp_audio.wav", format="wav")
+    ffmpeg_extract_audio(audio_path, "temp_audio.wav")
+    #sound = moviepy.VideoFileClip(audio_path)
+    #sound.audio.write_audiofile("temp_audio.wav")
 
     # Use SpeechRecognition to transcribe the audio
     recognizer = sr.Recognizer()
@@ -86,8 +90,11 @@ def extract_user_input():
     audio_file.save(audio_path)
 
     # Convert the webm format to wav using pydub
-    sound = AudioSegment.from_file(audio_path, format="webm")
-    sound.export("temp_audio.wav", format="wav")
+    # sound = AudioSegment.from_file(audio_path, format="webm")
+    # sound.export("temp_audio.wav", format="wav")
+    ffmpeg_extract_audio(audio_path, "temp_audio.wav")
+    # sound = moviepy.VideoFileClip(audio_path)
+    # sound.audio.write_audiofile("temp_audio.wav")
 
     # Use SpeechRecognition to transcribe the audio
     recognizer = sr.Recognizer()
@@ -133,4 +140,3 @@ def compareTexts():
 
 if __name__ == "__main__":
     app.run(debug=True, port=8080)
-
