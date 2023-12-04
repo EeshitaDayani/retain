@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from PIL import Image
-import pytesseract
+#import pytesseract
+import easyocr
 #from pydub import AudioSegment
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_audio
 import speech_recognition as sr
@@ -32,7 +33,9 @@ def extract_text_image():
     file.save(image_path)
 
     # Use Tesseract to extract text from the image
-    referenceText = pytesseract.image_to_string(Image.open(image_path)).strip()
+    reader = easyocr.Reader(['en'], gpu = True)
+    referenceText = (' '.join(reader.readtext(image_path, detail = 0)))
+    #referenceText = pytesseract.image_to_string(Image.open(image_path)).strip()
 
     # Remove the temporary image file
     import os
