@@ -25,4 +25,6 @@ export default function Scorecard() {
       {score !== null && <h2>Your score: {score}%</h2>}
     </div>
   );
+
+  // TODO: Give summary of what mistakes users made. If they're making errors on dates more names etc.
 }
